@@ -1,1 +1,6 @@
-# LP2
+<h1> Breve descrição sobre mim. </h1>
+<p> Olá, meu nome é Brenno Luiz, tenho 20 anos, sou G de LGBTQ+, sou da zona Oeste do RJ, morador de Santa Cruz, e estou no terceiro período da faculdade de <b>Ciência da computação</b> na <b>UERJ</b>. </p> 
+
+<p> Sou bem proativo e me esforço bastante, <i>ainda tenho uma lógica de programação um pouco defasada por causa de uma dislexia que dificulta isso, porém me esforço ao máximo sempre pra entender tudo</i>, estou bastante animado com essa matéria, sou bem ativo politicamente em prol dos direitos humanos e gosto de sempre ajudar a todos. Gosto bastante de música, cinema, e sou completamente apaixonado por animais, participo de um projeto social chamado <b>Projeto MQ</b>, que tem como objetivo por estudantes de escolas públicas na universidade pública, além de Coordenador Digital, dou monitorias de algumas matérias, faço estágio no <b>CapUERJ</b> também, e trabalho num bar aos finais de semana. </p>
+
+<p> Sempre fui apaixonado pelo mundo da tecnologia, e escolhi a computação com um método de expressão nas linguagens em que são oferecidas dentro desse mundo, e que com isso eu consiga de alguma forma ajudar em algo maior e que eu consiga crescer como pessoa e como profissional dentro dessa jornada, estou <i>gostando bastante</i> do curso, apesar das minhas condições. Básicamente esse é o resumo da meu <b>eu</b>. </p>
