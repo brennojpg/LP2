@@ -1,5 +1,5 @@
 class HelloWorldApp {
     public static void main(String[] args) {
-        System.out.println("Hello Word! :D");
+        System.out.println("Hello Word!");
      }
 }
