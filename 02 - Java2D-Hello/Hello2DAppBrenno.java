@@ -65,5 +65,6 @@
             int[] y5 = {210, 270, 210};
             g2d.fillPolygon(x5, y5, 3);
 
+            g2d.drawOval(50, 50, width, height);
         }
     }
