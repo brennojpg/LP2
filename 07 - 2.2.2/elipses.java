@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-class hm {
+class elipses {
     public static void main (String[] args) {
         PaintFrame frame = new PaintFrame();
         frame.setVisible(true);
