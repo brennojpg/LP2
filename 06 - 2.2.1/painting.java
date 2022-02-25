@@ -9,10 +9,7 @@ class painting {
     }
 }
 class PaintFrame extends JFrame {
-    Rect r1;
-    Rect r2;
-    Rect r3;
-    Rect r4;
+    Rect r1, r2, r3, r4;
 
     PaintFrame () {
         this.addWindowListener (
@@ -33,16 +30,15 @@ class PaintFrame extends JFrame {
 
     public void paint (Graphics g) {
         super.paint(g);
-        this.r1.paint(g);
-        this.r2.paint2(g);
-        this.r3.paint3(g);
-        this.r4.paint4(g);
+        this.r1.paint(g, Color.green, new Color(255,20,147));
+        this.r2.paint(g, Color.white, new Color(75,0,130));
+        this.r3.paint(g, Color.black, new Color(0,255,255));
+        this.r4.paint(g, Color.yellow, new Color(139,0,0));
     }
 }
 
 class Rect {
-    int x, y;
-    int w, h;
+    int x, y, w, h;
 
     Rect (int x, int y, int w, int h) {
         this.x = x;
@@ -56,39 +52,12 @@ class Rect {
         this.x, this.y, this.w, this.h);
     }
 
-    void paint (Graphics g) {
+    void paint (Graphics g, Color borda, Color dentro){
         Graphics2D g2d = (Graphics2D) g;
-        
-        g.setColor(new Color(255,20,147));
+        g2d.setColor(dentro);
         g2d.fillRect(this.x, this.y, this.w, this.h);
-        g2d.setPaint(Color.green);
-        g2d.drawRect(this.x,this.y, this.w,this.h);
+        g2d.setColor(borda);
+        g2d.drawRect(this.x, this.y, this.w, this.h);
+    
     }  
-
-    void paint2 (Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        
-        g.setColor(new Color(75,0,130));
-        g2d.fillRect(this.x, this.y, this.w, this.h);
-        g2d.setPaint(Color.white);
-        g2d.drawRect(this.x,this.y, this.w,this.h);
-    }
-        
-    void paint3 (Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-            
-        g.setColor(new Color(0,255,255));
-        g2d.fillRect(this.x, this.y, this.w, this.h);
-        g2d.setPaint(Color.black);
-        g2d.drawRect(this.x,this.y, this.w,this.h);    
-    }
-
-    void paint4 (Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-            
-        g.setColor(new Color(139,0,0));
-        g2d.fillRect(this.x, this.y, this.w, this.h);
-        g2d.setPaint(Color.yellow);
-        g2d.drawRect(this.x,this.y, this.w,this.h);    
-    }
 }
