@@ -86,9 +86,9 @@ class Ellipse {
     void paint (Graphics g, Color borda, Color dentro) {
         Graphics2D g2d = (Graphics2D) g;
         g.setColor(dentro);
-        g2d.fillOval(this.x, this.y, this.w, this.h);
+        g2d.fill(new Ellipse2D.Double(this.x, this.y, this.w, this.h));
         g2d.setColor(borda);
-        g2d.drawOval(this.x, this.y, this.w, this.h);
+        g2d.draw(new Ellipse2D.Double(this.x, this.y, this.w, this.h));
     }
 
 }
