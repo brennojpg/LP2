@@ -4,7 +4,7 @@ import javax.swing.*;
 import figures.*;
 import figures.Polygon;
 
-class PackApp {
+class PackAppColored {
     public static void main (String[] args) {
         PackFrame frame = new PackFrame();
         frame.setVisible(true);
@@ -26,27 +26,27 @@ class PackFrame extends JFrame {
         );
         this.setTitle("Pacotes em Java :D");
         this.setSize(350, 350);
-        this.r1 = new Rect(50,50, 100,30);
-        this.r2 = new Rect(50,150, 30,100);
-        this.r3 = new Rect(50,270, 100,30);
-        this.e1 = new Ellipse(50,100, 100,30);
-        this.e2 = new Ellipse(120,150, 30,100);
-        this.p1 = new Polygon(new int[] {200, 250, 300}, new int[] {50, 100, 50}, 3);
-        this.p2 = new Polygon(new int[] {200, 250, 300}, new int[] {100, 50, 100}, 3);
-        this.p3 = new Polygon(new int[] {200, 250, 300}, new int[] {300, 120, 300}, 3);
+        this.r1 = new Rect(50,50, 100,30, Color.green, new Color(255,20,147));
+        this.r2 = new Rect(50,150, 30,100, Color.white, new Color(75,0,130));
+        this.r3 = new Rect(50,270, 100,30, Color.yellow, new Color(139,0,0));
+        this.e1 = new Ellipse(50,100, 100,30, new Color(255,0,0), new Color(144, 238, 144));
+        this.e2 = new Ellipse(120,150, 30,100, new Color(200,162,200), new Color(0, 0, 0));
+        this.p1 = new Polygon(new int[] {200, 250, 300}, new int[] {50, 100, 50}, 3, Color.black, new Color(0,255,255));
+        this.p2 = new Polygon(new int[] {200, 250, 300}, new int[] {100, 50, 100}, 3, new Color(0, 0, 0), new Color(238, 173, 45));
+        this.p3 = new Polygon(new int[] {200, 250, 300}, new int[] {300, 120, 300}, 3, Color.cyan, Color.magenta);
         this.getContentPane().setBackground(Color.pink);
 
     }
 
     public void paint (Graphics g) {
         super.paint(g);
-        this.r1.paint(g, Color.green, new Color(255,20,147));
-        this.e1.paint(g, Color.white, new Color(75,0,130));
-        this.r2.paint(g, Color.yellow, new Color(139,0,0));
-        this.e2.paint(g, new Color(255,0,0), new Color(144, 238, 144));
-        this.r3.paint(g, new Color(200,162,200), new Color(0, 0, 0));
-        this.p1.paint(g, Color.black, new Color(0,255,255));
-        this.p2.paint(g, new Color(0, 0, 0), new Color(238, 173, 45));
-        this.p3.paint(g, Color.cyan, Color.magenta);
+        this.r1.paint(g);
+        this.e1.paint(g);
+        this.r2.paint(g);
+        this.e2.paint(g);
+        this.r3.paint(g);
+        this.p1.paint(g);
+        this.p2.paint(g);
+        this.p3.paint(g);
     }
 }

@@ -8,12 +8,14 @@ public class Polygon {
     private int[] x; 
     private int[] y;
     private int z; 
+    private Color borda, dentro;
 
-    public Polygon(int[] x, int[] y, int z) {
+    public Polygon(int[] x, int[] y, int z, Color borda, Color dentro) {
         this.x = x;
         this.y = y;
         this.z = z;
-      
+        this.borda = borda;
+        this.dentro = dentro;       
     }
 
     private void print(){
@@ -21,7 +23,7 @@ public class Polygon {
         this.x[0], this.x[1], this.x[2], this.y[0], this.y[1], this.y[2]);
     }
 
-    public void paint (Graphics g, Color borda, Color dentro) {
+    public void paint (Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g.setColor(dentro);
         g2d.fillPolygon(this.x, this.y, this.z);
