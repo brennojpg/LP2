@@ -50,6 +50,7 @@ class ListFrame extends JFrame {
                         
                         rs.add(new Rect(x,y,w,h,borda1,borda2,borda3,dentro1,dentro2,dentro3)); 
                         repaint();
+                    
                     }
                
                     if (evt.getKeyChar() == 'e'){
@@ -79,7 +80,8 @@ class ListFrame extends JFrame {
         this.setTitle("retanguloes e circulos aletaorios :)");
         this.setSize(350, 350);
         this.getContentPane().setBackground(Color.black);
-        }
+       
+    }
 
         public void paint (Graphics g){
             super.paint(g);
