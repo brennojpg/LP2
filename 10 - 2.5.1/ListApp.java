@@ -77,7 +77,7 @@ class ListFrame extends JFrame {
         }
     );
 
-        this.setTitle("retanguloes e circulos aletaorios :)");
+        this.setTitle("retanguloes e circulos aleatorios :)");
         this.setSize(350, 350);
         this.getContentPane().setBackground(Color.black);
        
