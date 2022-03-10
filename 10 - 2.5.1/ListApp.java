@@ -64,7 +64,7 @@ class ListFrame extends JFrame {
                         int borda1 = rand.nextInt(255);
                         int borda2 = rand.nextInt(255);
                         int borda3 = rand.nextInt(255);
-                        //as cores desejadas nas bordas.
+                        //as cores desejadas nas bordas. 
                         int dentro1 = rand.nextInt(255);
                         int dentro2 = rand.nextInt(255);
                         int dentro3 = rand.nextInt(255);
