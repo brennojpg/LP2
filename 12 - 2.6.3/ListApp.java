@@ -61,10 +61,10 @@ class ListFrame extends JFrame {
                         //adicionando ao apertar "P", Polígonos
                         } else if (evt.getKeyChar() == 'p') {
                             int[] Px = {
-                                rand.nextInt(255), rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)};
+                                rand.nextInt(350), rand.nextInt(350), rand.nextInt(350), rand.nextInt(350)};
                             
                             int[] Py = {
-                                rand.nextInt(255), rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)};
+                                rand.nextInt(350), rand.nextInt(350), rand.nextInt(350), rand.nextInt(350)};
                                 figs.add(new Polygon(Px, Py, 4,borda1,borda2,borda3,dentro1,dentro2,dentro3));
 
                         }
