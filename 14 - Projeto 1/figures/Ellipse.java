@@ -19,11 +19,21 @@ public class Ellipse extends Figure{
         System.out.format("Tamanho das elipses equivale a: (%d, %d), e se encontra nas posicoes: (%d, %d).\n", this.w, this.h, this.x, this.y);
     }
 
+    public boolean clicked (int mx, int my) {
+        return (this.x <= mx && mx<= this.x + this.w  && this.y <= my && my <= this.y + this.h);
+    }
+
     public void paint (Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(new Color(this.dentro1,this.dentro2,this.dentro3));
         g2d.fill(new Ellipse2D.Double(this.x,this.y, this.w,this.h));
         g2d.setColor(new Color(this.borda1,this.borda2,this.borda3));
         g2d.draw(new Ellipse2D.Double(this.x,this.y, this.w,this.h));
+    }
+
+    public void resize(int rw, int rh) {
+        
+        this.w += rw;
+        this.h += rh;
     }
 }

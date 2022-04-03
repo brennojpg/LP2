@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 public abstract class Figure {
 
-    int x, y, borda1, borda2, borda3, dentro1, dentro2, dentro3;
+    int w = 50, h = 50, x, y, borda1, borda2, borda3, dentro1, dentro2, dentro3;
 
     public Figure(int x, int y, int borda1, int borda2, int borda3, int dentro1, int dentro2, int dentro3){
         this.x = x;
@@ -16,13 +16,12 @@ public abstract class Figure {
         this.dentro1 = dentro1;
         this.dentro2 = dentro2;
         this.dentro3 = dentro3;
+
     }
 
     public abstract void paint (Graphics g);
 
-    public boolean clicked (int mx, int my) {
-        return (this.x <= mx && mx<= this.x + 60 && this.y <= my && my <= this.y + 60);
-    }
+    public abstract boolean clicked (int mx, int my);
     
     public void bordinha(int a, int b, int c){
         this.borda1 = a;
@@ -31,8 +30,10 @@ public abstract class Figure {
     }
 
     public void drag(int mx, int my) {
+        
         this.x += mx;
         this.y += my;
     }
 
+    public abstract void resize(int rw, int rh);
 }

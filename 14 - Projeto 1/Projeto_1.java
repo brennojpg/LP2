@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import figures.Polygon;
 
-class ListApp {
+class Projeto_1 {
     public static void main (String[] args) {
         ListFrame frame = new ListFrame();
         frame.setVisible(true);
@@ -71,8 +71,8 @@ class ListFrame extends JFrame {
                         int y = PositionMouse.y;
                        
                         //tamanho desejado, altura e largura.
-                        int w = 60;
-                        int h = 60;
+                        int w = 50;
+                        int h = 50;
                         //as cores desejadas no fundo.
                         int borda1 = rand.nextInt(255);
                         int borda2 = rand.nextInt(255);
@@ -84,20 +84,29 @@ class ListFrame extends JFrame {
                         //tamanho das bordas do triângulo
 
                         //adicionando ao apertar "R", Retângulos
-                        if (evt.getKeyChar() == 'r') {
+                         if (evt.getKeyChar() == 'r' || evt.getKeyCode() == 'R') {
                             Rect r = new Rect(x,y,w,h,borda1,borda2,borda3,dentro1,dentro2,dentro3);
-                            figs.add(r);
+                                figs.add(r);
+
+                         //adicionando ao apertar "l", Linhas
+                        } else if (evt.getKeyChar() == 'l' || evt.getKeyCode() == 'L') {
+                                figs.add(new Line(x,y,w,h,borda1,borda2,borda3,dentro1,dentro2,dentro3));
+                            
                         
                         //adicionando ao apertar "E", Elípses
-                        } else if (evt.getKeyChar() == 'e') {
-                            figs.add(new Ellipse(x,y,w,h,borda1,borda2,borda3,dentro1,dentro2,dentro3));
+                        } else if (evt.getKeyChar() == 'e' || evt.getKeyCode() == 'E') {
+                                figs.add(new Ellipse(x,y,w,h,borda1,borda2,borda3,dentro1,dentro2,dentro3));
 
                         //adicionando ao apertar "P", Polígonos
-                        } else if (evt.getKeyChar() == 'p' ) {
+                        } else if (evt.getKeyChar() == 'p' || evt.getKeyCode() == 'P') {
                                 figs.add(new Polygon(x, y, 5,borda1,borda2,borda3,dentro1,dentro2,dentro3));
+
+                        //adicionando ao apertar "P", Polígonos
+                        } else if (evt.getKeyChar() == 't' || evt.getKeyCode() == 'T') {
+                                figs.add(new Triangulo(x, y, 5,borda1,borda2,borda3,dentro1,dentro2,dentro3));
                         }
                         
-                        if (evt.getKeyCode() == KeyEvent.VK_DELETE){ 
+                        if (evt.getKeyCode() == KeyEvent.VK_DELETE || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE){ 
                             figs.remove(foco);
                         }
 
@@ -116,6 +125,14 @@ class ListFrame extends JFrame {
                         if (evt.getKeyCode() == 's' || evt.getKeyCode() == 'S'){
                             foco.drag(0,6);
                         }
+
+                        if (evt.getKeyCode() == KeyEvent.VK_UP){
+                            foco.resize(6, 6);
+                        }
+
+                        if (evt.getKeyCode() == KeyEvent.VK_DOWN){
+                            foco.resize(-6, -6);
+                        }
                 repaint();
             }
         }
@@ -131,14 +148,14 @@ class ListFrame extends JFrame {
                     int my = event.getY() - mouse.y;
                     foco.drag(mx, my);
                     repaint();
-                }   mouse = ((MouseEvent) event).getPoint();
+                }   mouse = ((MouseEvent)event).getPoint();
             }
         }
     );
 
-        this.setTitle("Aperte R, E ou P: <3)");
-        this.setSize(350, 350);
-        this.getContentPane().setBackground(Color.black);
+        this.setTitle("Primeiro Projeto :D");
+        this.setSize(450, 450);
+        this.getContentPane().setBackground(Color.darkGray);
        
     }
 
