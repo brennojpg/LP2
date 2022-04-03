@@ -7,10 +7,10 @@
 <hr>
 
 <b>Nosso objetivo era seguir a lista que nos foi proposta:</b>
-    <i>
-    Pelo menos 4 figuras diferentes
+
+ <i> Pelo menos 4 figuras diferentes
     
-    1. Criação e remoção
+    1. Criação e remoção 
    
     2. Propriedades ajustáveis
    
@@ -23,7 +23,6 @@
     - Lista de figuras ativas
     - Listeners de mouse e teclado
     - Figura em foco 
-    </i>
 
 🔴 <b> Use as teclas:</b> "R" - para contruir um retângulo; <br>
 🟠 "E" - para contruir um círculo (Elípse); <br>
@@ -35,4 +34,4 @@
 🟣 a figura clicada ficará em evidência, ficando por cima das outras; <br>
 🟤 Aperte as teclas "DELETE" ou "BACKSPACE" para apagar as figuras; <br>
 ⚫ Movimente-as usando as teclas "W", "A", "S", "D"; <br>
-⚪ Aumente o tamanho com as setas para cima ⬆ do teclado, e diminua aperta a seta para baixo ⬇; <br>
+⚪ Aumente o tamanho com as setas para cima ⬆ do teclado, e diminua apertando a seta para baixo ⬇; <br>
