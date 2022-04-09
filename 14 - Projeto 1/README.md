@@ -4,7 +4,6 @@
 
 Primeiramente explicando, o intuito do programa é criar figuras diferentes, e permetir algumas edições.
 
-<h2> Comandos </h2>
 <h3> <hr>Comandos de criação</hr> </h3>
 🔴 Aperte "R" para contruir um retângulo; <br>
 🟠 Aperte "E" para contruir um círculo (Elípse); <br>
