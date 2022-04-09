@@ -14,6 +14,7 @@ class Projeto_1 {
     public static void main (String[] args) {
         ListFrame frame = new ListFrame();
         frame.setVisible(true);
+        frame.setFocusTraversalKeysEnabled(false);
     }
 }
 
@@ -26,7 +27,7 @@ class ListFrame extends JFrame {
     Figure foco = null;
     Point mouse = null;
 
-    int x, y, w, h, borda1, borda2, borda3, dentro1, dentro2, dentro3;
+    int i, x, y, w, h, borda1, borda2, borda3, dentro1, dentro2, dentro3;
 
     ListFrame () {
         this.addWindowListener (
@@ -45,10 +46,10 @@ class ListFrame extends JFrame {
 
                    for (int i = 0; i < figs.size(); i++) {
                         if (figs.get(i).clicked(mouse.x,mouse.y)) {
-                        foco = figs.get(i); 
+                            foco = figs.get(i); 
                         }
                         else{
-                            figs.get(i).bordinha(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)); 
+                            figs.get(i).bordinha((0),(0),(0)); 
                      }
                     }
             
@@ -133,6 +134,36 @@ class ListFrame extends JFrame {
                         if (evt.getKeyCode() == KeyEvent.VK_DOWN){
                             foco.resize(-6, -6);
                         }
+
+                        if (evt.getKeyCode() == 'c' || evt.getKeyCode() == 'C'){ 
+                            foco.colorismo(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255));
+                        }
+
+                        if (evt.getKeyCode() == 'b' || evt.getKeyCode() == 'B'){ 
+                            foco.bordinha(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255));
+                        }
+                        if (evt.getKeyCode() == KeyEvent.VK_TAB){
+                            if(foco != null){
+                                if (figs.size() > 0){
+                                    for(Figure fig: figs){
+                                        if(fig == figs.get(i)){
+                                            foco = figs.get(i);
+                                            foco.bordinha(255, 0, 132);
+                                        }
+                                        else{
+                                            fig.bordinha(0,0,0);
+                                        }
+                                    }
+                                    
+                                    figs.remove(foco);
+                                    figs.add(foco);
+                                    i++;
+                               
+                                    if (i >= figs.size()){
+                                    i = 0;}
+                                }
+                        }      
+                   }
                 repaint();
             }
         }

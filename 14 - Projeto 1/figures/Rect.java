@@ -30,6 +30,17 @@ public class Rect extends Figure {
     }
 
     public void resize(int rw, int rh) {
+        if (this.w >= 20 && this.w <= 300){
+            if(this.w == 300){
+                rw = -6;
+                rh = -6;
+            }
+            else if (this.w == 20 ){
+                rw = +6;
+                rh = +6;
+            }
+        }
+        
         this.w += rw;
         this.h += rh;
         

@@ -29,11 +29,30 @@ public abstract class Figure {
         this.borda3 = c;
     }
 
+    public void colorismo(int a, int b, int c){
+        this.dentro1 = a;
+        this.dentro2 = b;
+        this.dentro3 = c;
+    }
+
     public void drag(int mx, int my) {
         
         this.x += mx;
         this.y += my;
     }
 
-    public abstract void resize(int rw, int rh);
+    public void resize(int rw, int rh) {
+    
+    if(this.w >= 10 && this.w <= 300){
+        if(this.w == 200){
+            rw = -5;
+            rh = -5;
+        }
+        else if(this.w == 40){
+            rw = +5;
+            rh = +5;
+        }
+    }
+}
+
 }
