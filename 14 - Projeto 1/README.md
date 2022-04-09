@@ -19,6 +19,6 @@ Primeiramente explicando, o intuito do programa é criar figuras diferentes, e p
 🟡 Aperte "C" na figura em foco para mudar a cor de fundo; <br>
 🟢 Aperte "B" na figura em foco para mudar a cor da borda; <br>
 🔵 Aperte as teclas "W", "A", "S", "D" na figura em foco, para movê-las pelo teclado; <br>
-🟣 Aumente o tamanho da figura em foco com as setas para cima ⬆, e diminua apertando a seta para baixo ⬇ do teclado;
-🟤 Aperte "TAB" para mudar o foco das figuras criadas sem o auxílio do mouse;
+🟣 Aumente o tamanho da figura em foco com as setas para cima ⬆, e diminua apertando a seta para baixo ⬇ do teclado;<br>
+🟤 Aperte "TAB" para mudar o foco das figuras criadas sem o auxílio do mouse;<br>
 
