@@ -14,7 +14,8 @@ Primeiramente explicando, o intuito do programa é criar figuras diferentes, e p
 
 <h3> <hr>Comandos de edição</hr> </h3>
 🔴 Clicando com o botão esquerdo do mouse, você conseguirá ter o foco das figuras, as figuras focadas ficarão com a cor rosa em volta <br>
-🔴 e com isso você poderá arrastar a figura e mudar o foco clicando nas outras fuguras também; <br>
+🔴 e com isso você poderá arrastar a figura, e também mudar o foco clicando nas outras fuguras criadas, aparecerá um mini quadradinho <br>
+🔴 no canto inferior direito, quando a figura tiver em foco, que ao clicar e arrastar-lo, você vai conseguir redimensionar a figura: <br>
 🟠 Aperte "DEL" ou "BACKSPACE" na figura em foco para deletar uma figura criada; <br>
 🟡 Aperte "C" na figura em foco para mudar a cor de fundo; <br>
 🟢 Aperte "B" na figura em foco para mudar a cor da borda; <br>

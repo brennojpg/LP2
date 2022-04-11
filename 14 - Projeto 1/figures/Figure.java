@@ -1,11 +1,10 @@
 package figures;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 public abstract class Figure {
 
-    int w = 50, h = 50, x, y, borda1, borda2, borda3, dentro1, dentro2, dentro3;
+    public int w = 50, h = 50, x, y, borda1, borda2, borda3, dentro1, dentro2, dentro3;
 
     public Figure(int x, int y, int borda1, int borda2, int borda3, int dentro1, int dentro2, int dentro3){
         this.x = x;
@@ -52,6 +51,8 @@ public abstract class Figure {
             rw = +5;
             rh = +5;
         }
+        this.w = rw;
+        this.h = rh;
     }
 }
 

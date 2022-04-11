@@ -21,13 +21,15 @@ class Projeto_1 {
 class ListFrame extends JFrame {
     ArrayList<Figure> figs = new ArrayList<Figure>();
     Random rand = new Random();
+    Rect aux = new Rect (0, 0, 10, 10, 64, 64, 64, 255, 0, 132);
     
     //posições do mouse e do foco dele
     Point PositionMouse = null;
     Figure foco = null;
     Point mouse = null;
 
-    int i, x, y, w, h, borda1, borda2, borda3, dentro1, dentro2, dentro3;
+    int i, x, y, w, h, borda1, borda2, borda3, dentro1, dentro2, dentro3, posX = 0, posY = 0;
+    boolean auxKey = false, focoBoolean = false;
 
     ListFrame () {
         this.addWindowListener (
@@ -43,14 +45,24 @@ class ListFrame extends JFrame {
                public void mousePressed(MouseEvent evt){
                    mouse = getMousePosition();
                    foco = null;
+                   auxKey = false;
 
+
+                   mouse  = evt.getPoint();
                    for (int i = 0; i < figs.size(); i++) {
                         if (figs.get(i).clicked(mouse.x,mouse.y)) {
                             foco = figs.get(i); 
                         }
+                        
+                        else if(aux.clicked(mouse.x, mouse.y)){
+                            foco = figs.get(i);    
+                            auxKey = true;
+                        }
+                        
                         else{
+                            auxKey = false;
                             figs.get(i).bordinha((0),(0),(0)); 
-                     }
+                        }
                     }
             
                     if (foco != null) {
@@ -109,6 +121,7 @@ class ListFrame extends JFrame {
                         
                         if (evt.getKeyCode() == KeyEvent.VK_DELETE || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE){ 
                             figs.remove(foco);
+                            foco = null;
                         }
 
                         if (evt.getKeyCode() == 'a' || evt.getKeyCode() == 'A'){
@@ -173,13 +186,21 @@ class ListFrame extends JFrame {
     this.addMouseMotionListener(
         new MouseAdapter(){
             public void mouseDragged (MouseEvent event){
-                if (foco != null){
-
-                    int mx = event.getX() - mouse.x;
-                    int my = event.getY() - mouse.y;
-                    foco.drag(mx, my);
-                    repaint();
-                }   mouse = ((MouseEvent)event).getPoint();
+                
+                if(auxKey){
+                    foco.resize(event.getX() - mouse.x, event.getY() - mouse.y);
+                }
+                
+                else{
+                    if (foco != null){
+    
+                        int mx = event.getX() - mouse.x;
+                        int my = event.getY() - mouse.y;
+                        foco.drag(mx, my);
+                    }   
+                }
+                mouse = event.getPoint();
+                repaint(); 
             }
         }
     );
@@ -189,11 +210,15 @@ class ListFrame extends JFrame {
         this.getContentPane().setBackground(Color.darkGray);
        
     }
-
         public void paint (Graphics g){
             super.paint(g);
             for (Figure fig: this.figs){
                 fig.paint(g);
+        }
+        if(foco != null){
+            aux.x = foco.x + (foco.w + 10);
+            aux.y = foco.y + (foco.h + 10);
+            aux.paint(g);
         }
     }
 }

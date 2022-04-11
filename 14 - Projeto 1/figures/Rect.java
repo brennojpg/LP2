@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.Color;
 
 public class Rect extends Figure {
-    private int w, h;
 
     public Rect (int x, int y, int w, int h, int borda1, int borda2, int borda3, int dentro1, int dentro2, int dentro3) {
         super(x, y, borda1, borda2, borda3, dentro1, dentro2, dentro3);

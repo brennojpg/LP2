@@ -30,7 +30,7 @@ public class Triangulo extends Figure {
     }
 
     public boolean clicked (int mx, int my) {
-        return (this.Px[2] <= mx && mx<= this.Px[1]  && this.Py[0] <= my);
+        return (this.Px[2] <= mx && mx<= this.Px[1]  && this.Py[0] <= my && this.Py[2] >= my);
     }
 
     public void drag(int dx, int dy){
@@ -55,6 +55,9 @@ public class Triangulo extends Figure {
             }
         }
 
+        this.w += rw;
+        this.h += rh;
+        
         this.Px[1] += rw; this.Px[2] -= rw;
         this.Py[1] += rh; this.Py[2] += rh;
     }
