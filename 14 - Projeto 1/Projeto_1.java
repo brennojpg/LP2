@@ -6,6 +6,7 @@ import java.lang.String;
 import java.awt.event.MouseEvent;
 
 import figures.*;
+import Ivisible.*;
 import java.util.ArrayList;
 import java.util.Random;
 import figures.Polygon;
