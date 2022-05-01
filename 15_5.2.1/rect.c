@@ -17,7 +17,7 @@ Rect* novo_rect (int width, int height, int x, int y){
 }
 
 void print_rect(Rect* this){
-  printf("Quadradrado de largura: %d, e altura: %d, na posicao: (%d,%d)",
+  printf("Quadradrado de largura: %d, e altura: %d,\n na posicao: (%d,%d)\n",
   this->width, this->height, this->x,this->y); 
 }
 
