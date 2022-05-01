@@ -19,6 +19,7 @@ class Projeto_1 {
     }
 }
 
+
 class ListFrame extends JFrame {
     ArrayList<Figure> figs = new ArrayList<Figure>();
     Random rand = new Random();

@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Color;
 
 public class Polygon extends Figure {
+    
     private int[] Px; 
     private int[] Py;
 
