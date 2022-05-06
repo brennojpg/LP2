@@ -26,7 +26,6 @@ public class Polygon extends Figure {
         g2d.fillPolygon(this.Px, this.Py, 5);
         g2d.setColor(new Color(this.borda1,this.borda2,this.borda3));
         g2d.drawPolygon(this.Px, this.Py, 5);    
-
     }
 
     public boolean clicked (int mx, int my) {
