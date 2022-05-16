@@ -42,7 +42,7 @@ class ListFrame extends JFrame {
 
     ListFrame (){
     
-    //adicionando os butões
+    //adicionando os botões
 
     buts.add(new Button(1, new Ellipse(0,0, 0,0, 0,0,0, 0,0,0)));
     buts.add(new Button(2, new Line(24,24, 0,0, 0,0,0, 0,0,0)));
