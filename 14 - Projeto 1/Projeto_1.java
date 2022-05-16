@@ -6,10 +6,11 @@ import java.lang.String;
 import java.awt.event.MouseEvent;
 
 import figures.*;
-import Ivisible.*;
 import java.util.ArrayList;
 import java.util.Random;
 import figures.Polygon;
+import ivisible.IVisible;
+
 
 class Projeto_1 {
     public static void main (String[] args) {
@@ -22,6 +23,8 @@ class Projeto_1 {
 
 class ListFrame extends JFrame {
     ArrayList<Figure> figs = new ArrayList<Figure>();
+    ArrayList<Button> buts = new ArrayList<Button>();
+
     Random rand = new Random();
     Rect aux = new Rect (0, 0, 10, 10, 64, 64, 64, 255, 0, 132);
     
@@ -29,11 +32,25 @@ class ListFrame extends JFrame {
     Point PositionMouse = null;
     Figure foco = null;
     Point mouse = null;
+    
+    //add o foco e o clique para os botões
+    Button focoBut = null;
+    boolean clickedBut = false;
 
     int i, x, y, w, h, borda1, borda2, borda3, dentro1, dentro2, dentro3, posX = 0, posY = 0;
     boolean auxKey = false, focoBoolean = false;
 
-    ListFrame () {
+    ListFrame (){
+    
+    //adicionando os butões
+
+    buts.add(new Button(1, new Ellipse(0,0, 0,0, 0,0,0, 0,0,0)));
+    buts.add(new Button(2, new Line(24,24, 0,0, 0,0,0, 0,0,0)));
+    buts.add(new Button(3, new Triangulo(40,142, 0,0, 0,0, 0,0, true)));
+    buts.add(new Button(4, new Rect(0, 0, 0,0, 0,0,0, 0,0,0)));
+    buts.add(new Button(5, new Polygon(40,225, 0,0, 0,0, 0,0, true)));
+   
+    
         this.addWindowListener (
             new WindowAdapter() {
                 public void windowClosing (WindowEvent e) {
@@ -76,6 +93,28 @@ class ListFrame extends JFrame {
            }
         }
     );
+
+     this.addMouseMotionListener(
+        new MouseAdapter(){
+            public void mouseDragged (MouseEvent event){
+                
+                if(auxKey){
+                    foco.resize(event.getX() - mouse.x, event.getY() - mouse.y);
+                }
+                
+                else{
+                    if (foco != null){
+    
+                        int mx = event.getX() - mouse.x;
+                        int my = event.getY() - mouse.y;
+                        foco.drag(mx, my);
+                    }   
+                }
+                mouse = event.getPoint();
+                repaint(); 
+            }
+        }
+    );
        
        
         this.addKeyListener(
@@ -114,11 +153,11 @@ class ListFrame extends JFrame {
 
                         //adicionando ao apertar "P", Polígonos
                         } else if (evt.getKeyChar() == 'p' || evt.getKeyCode() == 'P') {
-                                figs.add(new Polygon(x, y, 5,borda1,borda2,borda3,dentro1,dentro2,dentro3));
+                                figs.add(new Polygon(x, y, 5,borda1,borda2,borda3,dentro1,dentro2, false));
 
                         //adicionando ao apertar "P", Polígonos
                         } else if (evt.getKeyChar() == 't' || evt.getKeyCode() == 'T') {
-                                figs.add(new Triangulo(x, y, 5,borda1,borda2,borda3,dentro1,dentro2,dentro3));
+                                figs.add(new Triangulo(x, y, 5,borda1,borda2,borda3,dentro1,dentro2, false));
                         }
                         
                         if (evt.getKeyCode() == KeyEvent.VK_DELETE || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE){ 
@@ -185,28 +224,6 @@ class ListFrame extends JFrame {
 
     );
 
-    this.addMouseMotionListener(
-        new MouseAdapter(){
-            public void mouseDragged (MouseEvent event){
-                
-                if(auxKey){
-                    foco.resize(event.getX() - mouse.x, event.getY() - mouse.y);
-                }
-                
-                else{
-                    if (foco != null){
-    
-                        int mx = event.getX() - mouse.x;
-                        int my = event.getY() - mouse.y;
-                        foco.drag(mx, my);
-                    }   
-                }
-                mouse = event.getPoint();
-                repaint(); 
-            }
-        }
-    );
-
         this.setTitle("Primeiro Projeto :D");
         this.setSize(450, 450);
         this.getContentPane().setBackground(Color.darkGray);
@@ -214,13 +231,18 @@ class ListFrame extends JFrame {
     }
         public void paint (Graphics g){
             super.paint(g);
+            
+            for (Button but: this.buts){
+                but.paint(g, but == focoBut);
+            }
+
             for (Figure fig: this.figs){
-                fig.paint(g);
+                fig.paint(g, fig == foco);
         }
-        if(foco != null){
-            aux.x = foco.x + (foco.w + 10);
-            aux.y = foco.y + (foco.h + 10);
-            aux.paint(g);
+            if(foco != null){
+                aux.x = foco.x + (foco.w + 10);
+                aux.y = foco.y + (foco.h + 10);
+                aux.paint(g, true);
+            }
         }
-    }
 }

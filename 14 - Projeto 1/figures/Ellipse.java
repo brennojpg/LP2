@@ -21,27 +21,11 @@ public class Ellipse extends Figure{
         return (this.x <= mx && mx<= this.x + this.w  && this.y <= my && my <= this.y + this.h);
     }
 
-    public void paint (Graphics g) {
+    public void paint (Graphics g, boolean focused) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(new Color(this.dentro1,this.dentro2,this.dentro3));
         g2d.fill(new Ellipse2D.Double(this.x,this.y, this.w,this.h));
         g2d.setColor(new Color(this.borda1,this.borda2,this.borda3));
         g2d.draw(new Ellipse2D.Double(this.x,this.y, this.w,this.h));
-    }
-
-    public void resize(int rw, int rh) {
-        if (this.w >= 20 && this.w <= 300){
-            if(this.w == 300){
-                rw = -6;
-                rh = -6;
-            }
-            else if (this.w == 20 ){
-                rw = +6;
-                rh = +6;
-            }
-        }
-
-        this.w += rw;
-        this.h += rh;
     }
 }

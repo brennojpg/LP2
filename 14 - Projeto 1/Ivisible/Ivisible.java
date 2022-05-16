@@ -1,10 +1,10 @@
-public package Ivisible;
+package ivisible;
 
 import java.awt.Graphics;
 
-public interface Ivisible {
+public interface IVisible {
 
     public boolean clicked(int x, int y);
-    public void paint(Graphics g);class Ivisible {
+    public void paint(Graphics g, boolean focused);
     
 }

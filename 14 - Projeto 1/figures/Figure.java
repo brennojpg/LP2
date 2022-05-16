@@ -2,9 +2,13 @@ package figures;
 
 import java.awt.Graphics;
 
-public abstract class Figure {
+import java.io.Serializable;
 
-    public int x, y, w = 50, h = 50;
+import ivisible.IVisible;
+
+public abstract class Figure implements IVisible, Serializable {
+
+    public int x, y, w = 50, h = 50, cont = 0;
     protected int borda1, borda2, borda3, dentro1, dentro2, dentro3;
 
     public Figure(int x, int y, int borda1, int borda2, int borda3, int dentro1, int dentro2, int dentro3){
@@ -19,7 +23,7 @@ public abstract class Figure {
 
     }
 
-    public abstract void paint (Graphics g);
+    public abstract void paint (Graphics g, boolean focused);
 
     public abstract boolean clicked (int mx, int my);
     
@@ -40,21 +44,23 @@ public abstract class Figure {
         this.x += mx;
         this.y += my;
     }
-
-    public void resize(int rw, int rh) {
     
-    if(this.w >= 10 && this.w <= 300){
-        if(this.w == 200){
-            rw = -5;
-            rh = -5;
-        }
-        else if(this.w == 40){
-            rw = +5;
-            rh = +5;
-        }
-        this.w = rw;
-        this.h = rh;
-    }
-}
+    public void resize(int rw, int rh) {
+        if (this.w >= 20 && this.w <= 300){
+            
+            if(this.w == 300){
+                rw = -6;
+                rh = -6;
 
+                cont--;
+            }
+            else if (this.w == 20 ){
+                rw = +6;
+                rh = +6;
+            }
+        }
+        
+        this.w += rw;
+        this.h += rh;
+    }
 }

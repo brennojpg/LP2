@@ -9,10 +9,24 @@ public class Polygon extends Figure {
     private int[] Px; 
     private int[] Py;
 
-    public Polygon(int x, int y, int borda1, int borda2, int borda3, int dentro1, int dentro2, int dentro3, int dentro32) {
+
+    public Polygon(int x, int y, int borda1, int borda2, int borda3, int dentro1, int dentro2, int dentro3, boolean chek) {
         super(x, y, borda1, borda2, borda3, dentro1, dentro2, dentro3);
-        this.Px = new int[] {x, x+40, x+40, x-40, x-40, x};
-        this.Py = new int[] {y, y+30, y+60, y+60, y+30, y};
+        
+        
+        if (chek){
+        
+            this.Px = new int[] {x, x+16, x+16, x-16, x-16, x};
+            this.Py = new int[] {y, y+10, y+30, y+30, y+10, y};
+
+        }
+
+        else{
+
+            this.Px = new int[] {x, x+40, x+40, x-40, x-40, x};
+            this.Py = new int[] {y, y+30, y+60, y+60, y+30, y};
+
+        }
     }
 
     private void print(){
@@ -20,7 +34,7 @@ public class Polygon extends Figure {
         this.Px[0], this.Px[1], this.Px[2], this.Py[0], this.Py[1], this.Py[2]);
     }
 
-    public void paint (Graphics g) {
+    public void paint (Graphics g, boolean focused) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(new Color(this.dentro1,this.dentro2,this.dentro3));
         g2d.fillPolygon(this.Px, this.Py, 5);
@@ -43,6 +57,13 @@ public class Polygon extends Figure {
     }
 
     public void resize(int rw, int rh) {
+       
+        this.Px[1] += rw; this.Px[2] += rw; this.Px[3] -= rw; this.Px[4] -= rw; 
+
+        this.Py[1] += rh/2; this.Py[2] += rh; 
+        
+        this.Py[3] += rh; this.Py[4] += rh/2;
+       
         if (this.w >= 20 && this.w <= 300){
             if(this.w == 300){
                 rw = -6;
@@ -57,10 +78,6 @@ public class Polygon extends Figure {
         this.x += rw;
         this.y += rh;
     
-        this.Px[1] += rw; this.Px[2] += rw; this.Px[3] -= rw; this.Px[4] -= rw; 
 
-        this.Py[1] += rh/2; this.Py[2] += rh; 
-        
-        this.Py[3] += rh; this.Py[4] += rh/2; 
     }
 }

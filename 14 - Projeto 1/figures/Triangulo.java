@@ -9,11 +9,19 @@ public class Triangulo extends Figure {
     private int[] Px; 
     private int[] Py;
 
-    public Triangulo(int x, int y, int borda1, int borda2, int borda3, int dentro1, int dentro2, int dentro3, int dentro32) {
+    public Triangulo(int x, int y, int borda1, int borda2, int borda3, int dentro1, int dentro2, int dentro3, boolean chek) {
         super(x, y, borda1, borda2, borda3, dentro1, dentro2, dentro3);
         
-        this.Px = new int[] {x, x+20, x-20};
-        this.Py = new int[] {y, y+40, y+40};
+        if (chek){
+
+            this.Px = new int[] {x, x+17, x-17};
+            this.Py = new int[] {y, y+35, y+35};
+        }
+
+        else{
+            this.Px = new int[] {x, x+20, x-20};
+            this.Py = new int[] {y, y+40, y+40};
+        }
     }
 
     private void print(){
@@ -21,7 +29,7 @@ public class Triangulo extends Figure {
         this.Px[0], this.Px[1], this.Px[2], this.Py[0], this.Py[1], this.Py[2]);
     }
 
-    public void paint (Graphics g) {
+    public void paint (Graphics g, boolean focused) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(new Color(this.dentro1,this.dentro2,this.dentro3));
         g2d.fillPolygon(this.Px, this.Py, 3);
