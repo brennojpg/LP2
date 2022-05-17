@@ -1,9 +1,6 @@
 package figures;
-
 import java.awt.Graphics;
-
 import java.io.Serializable;
-
 import ivisible.IVisible;
 
 public abstract class Figure implements IVisible, Serializable {
@@ -23,9 +20,8 @@ public abstract class Figure implements IVisible, Serializable {
 
     }
 
-    public abstract void paint (Graphics g, boolean focused);
-
-    public abstract boolean clicked (int mx, int my);
+    //public abstract void paint (Graphics g, boolean focused);
+    //public abstract boolean clicked (int mx, int my);
     
     public void bordinha(int a, int b, int c){
         this.borda1 = a;

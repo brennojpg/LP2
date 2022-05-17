@@ -2,8 +2,10 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.lang.String;
+import java.io.*;
 
 import java.awt.event.MouseEvent;
+import static java.awt.event.KeyEvent.*;
 
 import figures.*;
 import java.util.ArrayList;
@@ -36,6 +38,7 @@ class ListFrame extends JFrame {
     //add o foco e o clique para os botões
     Button focoBut = null;
     boolean clickedBut = false;
+    boolean auxB = false;
 
     int i, x, y, w, h, borda1, borda2, borda3, dentro1, dentro2, dentro3, posX = 0, posY = 0;
     boolean auxKey = false, focoBoolean = false;
@@ -47,14 +50,39 @@ class ListFrame extends JFrame {
     buts.add(new Button(1, new Ellipse(0,0, 0,0, 0,0,0, 0,0,0)));
     buts.add(new Button(2, new Line(24,24, 0,0, 0,0,0, 0,0,0)));
     buts.add(new Button(3, new Triangulo(40,142, 0,0, 0,0, 0,0, true)));
-    buts.add(new Button(4, new Rect(0, 0, 0,0, 0,0,0, 0,0,0)));
+    buts.add(new Button(4, new Rect(0,0, 0,0, 0,0,0, 0,0,0)));
     buts.add(new Button(5, new Polygon(40,225, 0,0, 0,0, 0,0, true)));
    
     
-        this.addWindowListener (
-            new WindowAdapter() {
-                public void windowClosing (WindowEvent e) {
-                    System.exit(0);
+    try {
+        FileInputStream f = new FileInputStream("proj.svg");
+        ObjectInputStream o = new ObjectInputStream(f);
+        figs = (ArrayList<Figure>) o.readObject();
+        o.close();
+    } 
+    
+    catch (Exception x) {
+        System.out.println("ERRO! em abrir o arquivo>");
+    }
+    
+    this.addWindowListener (
+        new WindowAdapter() {
+            public void windowClosing (WindowEvent e) {
+                
+                try {
+                    FileOutputStream f = new FileOutputStream("proj.svg");
+                    ObjectOutputStream o = new ObjectOutputStream(f);
+                    o.writeObject(figs);
+                    o.flush();
+                    o.close();
+                } 
+                
+                catch (Exception x) {
+                    System.out.println("ERRO! <em abrir o arquivo>");
+                }
+                
+                System.exit(0);
+
                 }
             }
         );
@@ -62,13 +90,26 @@ class ListFrame extends JFrame {
        this.addMouseListener(
            new MouseAdapter(){
                public void mousePressed(MouseEvent evt){
-                   mouse = getMousePosition();
                    foco = null;
                    auxKey = false;
-
-
                    mouse  = evt.getPoint();
+
+                   if(auxB){
+                    if(!(mouse.x < 30 && mouse.y < 450)){
+                        figureBut(focoBut.idx, mouse.x, mouse.y);
+                        auxB = false;
+                        focoBut = null;
+                    }
+                }
+                   
+                   for(Button but: buts){
+                    if(but.clicked(mouse.x, mouse.y)){
+                        focoBut = but;
+                        auxB = true;
+                    }
+                }
                    for (int i = 0; i < figs.size(); i++) {
+
                         if (figs.get(i).clicked(mouse.x,mouse.y)) {
                             foco = figs.get(i); 
                         }
@@ -76,6 +117,7 @@ class ListFrame extends JFrame {
                         else if(aux.clicked(mouse.x, mouse.y)){
                             foco = figs.get(i);    
                             auxKey = true;
+                            
                         }
                         
                         else{
@@ -83,12 +125,14 @@ class ListFrame extends JFrame {
                             figs.get(i).bordinha((0),(0),(0)); 
                         }
                     }
-            
+
+                    
                     if (foco != null) {
                         figs.remove(foco);
                         figs.add(foco);
                         foco.bordinha(255, 0, 132);
-                    }
+                }
+                
                repaint();
            }
         }
@@ -229,6 +273,39 @@ class ListFrame extends JFrame {
         this.getContentPane().setBackground(Color.darkGray);
        
     }
+
+    public void figureBut(int idx, int x, int y){
+        if (idx == 1) {
+            Figure fig = new Ellipse(x,y, 50, 50, borda1, borda2, borda3, dentro1, dentro2, dentro3);
+                    figs.add(fig);
+                    foco = fig;
+                   }
+
+        if (idx == 2) {
+            Figure fig = new Line(x,y, w, h, borda1, borda2, borda3, dentro1, dentro2, dentro3);
+                    figs.add(fig);
+                    foco = fig;
+                    }
+
+        if (idx == 3) {
+            Figure fig = new Triangulo(x,y, 5,borda1,borda2,borda3,dentro1,dentro2, false);
+                figs.add(fig);
+                foco = fig;
+                }
+
+        if (idx == 4) {
+            Figure fig = new Rect(x,y, 50, 50, borda1, borda2, borda3, dentro1, dentro2, dentro3);
+                    figs.add(fig);
+                    foco = fig;
+                }
+
+        if (idx == 5) {
+            Figure fig = new Polygon(x,y, 5,borda1,borda2,borda3,dentro1,dentro2, false);
+                    figs.add(fig);
+                    foco = fig;
+                }
+        }
+
         public void paint (Graphics g){
             super.paint(g);
             
