@@ -1,8 +1,8 @@
-import ivisible.IVisible;
+import ivisible.Ivisible;
 import figures.Figure;
 import java.awt.*;
 
-public class Button implements IVisible {
+public class Button implements Ivisible {
     static int SPC = 20;
     static int DIM = 40;
     static int PAD = 4;
@@ -45,6 +45,32 @@ public class Button implements IVisible {
 
             case 5:
             this.fig.y = PAD+SPC + idx*DIM + 20;
+            break;
+
+            case 9:
+            this.fig.y = PAD+SPC + idx*DIM + 20;
+            this.fig.x = PAD+SPC + 2;
+            break;
+            
+            case 10:
+            this.fig.y = PAD+SPC + idx*DIM + 20;
+            this.fig.x = PAD+SPC + 3;
+            break;
+
+            case 11:
+            this.fig.y = PAD+SPC + idx*DIM + 20;
+            this.fig.x = PAD+SPC - 2;
+            this.fig.w = DIM-PAD*2 - 12;
+            break;
+
+            case 12:
+            this.fig.y = PAD+SPC + idx*DIM + 20;
+            this.fig.x = PAD+SPC + 2;
+            break;
+
+            case 15:
+            this.fig.y = PAD+SPC + idx*DIM + 20;
+            this.fig.x = PAD+SPC + 6;
             break;
         }
        

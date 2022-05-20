@@ -38,7 +38,7 @@ public class Polygon extends Figure {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(new Color(this.dentro1,this.dentro2,this.dentro3));
         g2d.fillPolygon(this.Px, this.Py, 5);
-        g2d.setColor(new Color(this.borda1,this.borda2,this.borda3));
+        g2d.setColor(focused ? new Color(255, 0, 132) : new Color(this.borda1,this.borda2,this.borda3));
         g2d.drawPolygon(this.Px, this.Py, 5);    
     }
 
@@ -56,28 +56,36 @@ public class Polygon extends Figure {
         }       
     }
 
-    public void resize(int rw, int rh) {
+    public void resize(int rw) {
        
-        this.Px[1] += rw; this.Px[2] += rw; this.Px[3] -= rw; this.Px[4] -= rw; 
-
-        this.Py[1] += rh/2; this.Py[2] += rh; 
-        
-        this.Py[3] += rh; this.Py[4] += rh/2;
-       
-        if (this.w >= 20 && this.w <= 300){
-            if(this.w == 300){
-                rw = -6;
-                rh = -6;
-            }
-            else if (this.w == 20 ){
-                rw = +6;
-                rh = +6;
-            }
+         
+        if(rw > 0){
+            rw = 5;
         }
+        else if(rw < 0){
+            rw = - 5;
+        }
+        if(w >= 200 && rw >= 0){
+            return;
+        }
+        else if(w <= 50 && rw <= 0){
+            return;
+        }
+        else{
+            w += rw;
+            h += rw;
 
-        this.x += rw;
-        this.y += rh;
-    
+            this.Px[1] += rw; 
+            this.Px[2] += rw; 
+            this.Px[3] -= rw; 
+            this.Px[4] -= rw; 
+        
+            this.Py[1] += rw/2; 
+            this.Py[2] += rw; 
+            this.Py[3] += rw; 
+            this.Py[4] += rw/2; 
+        }
+        
 
     }
 }

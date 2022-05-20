@@ -1,14 +1,16 @@
 package figures;
 import java.awt.Graphics;
 import java.io.Serializable;
-import ivisible.IVisible;
+import ivisible.Ivisible;
+import java.awt.*;
 
-public abstract class Figure implements IVisible, Serializable {
+public abstract class Figure implements Ivisible, Serializable {
 
     public int x, y, w = 50, h = 50, cont = 0;
     protected int borda1, borda2, borda3, dentro1, dentro2, dentro3;
 
     public Figure(int x, int y, int borda1, int borda2, int borda3, int dentro1, int dentro2, int dentro3){
+        
         this.x = x;
         this.y = y;
         this.borda1 = borda1;
@@ -41,22 +43,16 @@ public abstract class Figure implements IVisible, Serializable {
         this.y += my;
     }
     
-    public void resize(int rw, int rh) {
-        if (this.w >= 20 && this.w <= 300){
-            
-            if(this.w == 300){
-                rw = -6;
-                rh = -6;
-
-                cont--;
-            }
-            else if (this.w == 20 ){
-                rw = +6;
-                rh = +6;
-            }
+    public void resize(int rw) {
+        if(w >= 200){
+            w = 198;
+            h = 198;
         }
-        
-        this.w += rw;
-        this.h += rh;
+        else if( w <= 30){
+            w = 32;
+            h = 32;
+        }
+        w += rw;
+        h += rw;
     }
 }

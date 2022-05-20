@@ -1,4 +1,4 @@
-<h1> Bem vindo ao meu primeiro projeto em java :D </h1>
+<h1> Bem vindo ao meu segundo projeto em java :D </h1>
 
 <h2> A seguir vou dar algumas instruções sobre o meu programa, vamos lá:</h2>
 
@@ -22,4 +22,24 @@ Primeiramente explicando, o intuito do programa é criar figuras diferentes, e p
 🔵 Aperte as teclas "W", "A", "S", "D" na figura em foco, para movê-las pelo teclado; <br>
 🟣 Aumente o tamanho da figura em foco com as setas para cima ⬆, e diminua apertando a seta para baixo ⬇ do teclado;<br>
 🟤 Aperte "TAB" para mudar o foco das figuras criadas sem o auxílio do mouse;<br>
+
+<h2> <hr>NOVIDADE!</hr> </h2>
+
+<h3> <hr>Botões de criação</hr> </h3>
+🔴 Aperte no primeiro botão para criar um círculo (Elípse); <br>
+🟠 Aperte no segundo botão para criar uma linha; <br>
+🟡 Aperte no terceiro botão para criar um triângulo; <br>
+🟢 Aperte no quarto botão para criar um retângulo; <br>
+🔵 Aperte no quinto botão para criar um polígono de 5 lados; <br>
+🟣 As figuras serão criadas onde o você clicar depois de apertar nos botões.
+
+<h3> <hr>Botões de edição</hr> </h3>
+🔴 Aperte no primeiro botão para mudar a cor da borda; <br>
+🟠 Aperte no segundo botão para mudar a cor do fundo da figura; <br>
+🟡 Aperte no terceiro botão para escolher a cor de fundo do programa; <br>
+🟢 Aperte no quarto botão para deletar a figura que você deseja; <br>
+🔵 Aperte no quinto e último botão para fechar o programa; <br>
+🟣 Quando você fecha o programa no "X", as figuras criadas serão salvas para a próxima vez que executar o programa;
+
+
 

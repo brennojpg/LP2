@@ -24,7 +24,7 @@ public class Rect extends Figure {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(new Color(this.dentro1,this.dentro2,this.dentro3));
         g2d.fillRect(this.x, this.y, this.w, this.h);
-        g2d.setColor(new Color(this.borda1,this.borda2,this.borda3));
+        g2d.setColor(focused ? new Color(255, 0, 132) : new Color(this.borda1,this.borda2,this.borda3));
         g2d.drawRect(this.x, this.y, this.w, this.h);
     }
     
