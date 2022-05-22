@@ -8,7 +8,7 @@ public class Polygon extends Figure {
     
     private int[] Px; 
     private int[] Py;
-
+    private boolean aux = false;
 
     public Polygon(int x, int y, int borda1, int borda2, int borda3, int dentro1, int dentro2, int dentro3, boolean chek) {
         super(x, y, borda1, borda2, borda3, dentro1, dentro2, dentro3);
@@ -46,14 +46,22 @@ public class Polygon extends Figure {
         return ((this.Px[4] <= mx && mx<= this.Px[1]  && this.Py[0] <= my && my <= this.Py[3]));
     }
 
-    public void drag(int dx, int dy){
-        this.x += dx;
-        this.y += dy;
+    public void drag(int mx, int my){
 
-        for(int i = 0; i < 6; i++){
-            this.Px[i] += dx;
-            this.Py[i] += dy;
-        }       
+        if(x < 105 && y < 680){
+            x = 106;
+            
+            this.Px = new int[] {x, x+40, x+40, x-40, x-40, x};
+            this.Py = new int[] {y, y+30, y+60, y+60, y+30, y};
+        }else{
+            this.x += mx;
+            this.y += my;
+            for(int i = 0; i < 6; i++){
+                this.Px[i] += mx;
+                this.Py[i] += my;
+            }       
+        }
+
     }
 
     public void resize(int rw) {

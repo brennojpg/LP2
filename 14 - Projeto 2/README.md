@@ -22,6 +22,7 @@ Primeiramente explicando, o intuito do programa é criar figuras diferentes, e p
 🔵 Aperte as teclas "W", "A", "S", "D" na figura em foco, para movê-las pelo teclado; <br>
 🟣 Aumente o tamanho da figura em foco com as setas para cima ⬆, e diminua apertando a seta para baixo ⬇ do teclado;<br>
 🟤 Aperte "TAB" para mudar o foco das figuras criadas sem o auxílio do mouse;<br>
+🔴 Aperte "G" para salvar o programa em formato SVG;
 
 <h2> <hr>NOVIDADE!</hr> </h2>
 
@@ -38,8 +39,17 @@ Primeiramente explicando, o intuito do programa é criar figuras diferentes, e p
 🟠 Aperte no segundo botão para mudar a cor do fundo da figura; <br>
 🟡 Aperte no terceiro botão para escolher a cor de fundo do programa; <br>
 🟢 Aperte no quarto botão para deletar a figura que você deseja; <br>
-🔵 Aperte no quinto e último botão para fechar o programa; <br>
-🟣 Quando você fecha o programa no "X", as figuras criadas serão salvas para a próxima vez que executar o programa;
+🔵 Aperte no quintopara salvar o programa no formato SVG; <br>
+🟣 Aperte no sexto e último botão para fechar o programa;<br>
+🟤 Quando você fecha o programa no "X", as figuras criadas serão salvas para a próxima vez que executar o programa;
+
+<h3> <hr>Observações</hr> </h3>
+🔴 Para desfocar do botão, basta clicar fora da caixa de seleção, que irá desfocar;<br>
+🟠 As figuras têm o limite de criação, não é possivel criar fdiguras em cima dos botões;
+
+
+
+
 
 
 

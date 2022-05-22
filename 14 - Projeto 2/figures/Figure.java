@@ -7,7 +7,7 @@ import java.awt.*;
 public abstract class Figure implements Ivisible, Serializable {
 
     public int x, y, w = 50, h = 50, cont = 0;
-    protected int borda1, borda2, borda3, dentro1, dentro2, dentro3;
+    public int borda1, borda2, borda3, dentro1, dentro2, dentro3;
 
     public Figure(int x, int y, int borda1, int borda2, int borda3, int dentro1, int dentro2, int dentro3){
         
@@ -38,9 +38,12 @@ public abstract class Figure implements Ivisible, Serializable {
     }
 
     public void drag(int mx, int my) {
-        
-        this.x += mx;
-        this.y += my;
+        if(x < 65){
+            x = 66;
+        }else{
+            this.x += mx;
+            this.y += my;
+        }
     }
     
     public void resize(int rw) {

@@ -42,14 +42,21 @@ public class Triangulo extends Figure {
         return (this.Px[2] <= mx && mx<= this.Px[1]  && this.Py[0] <= my && this.Py[2] >= my);
     }
 
-    public void drag(int dx, int dy){
-        this.x += dx;
-        this.y += dy;
+    public void drag(int mx, int my){
 
-        for(int i = 0; i < 3; i++){
-            this.Px[i] += dx;
-            this.Py[i] += dy;
-        }       
+        if(x < 85 && y < 680){
+            x = 86;
+            
+            this.Px = new int[] {x, x+20, x-20};
+            this.Py = new int[] {y, y+40, y+40};
+        }else{
+            this.x += mx;
+            this.y += my;
+            for(int i = 0; i < 3; i++){
+                this.Px[i] += mx;
+                this.Py[i] += my;
+            }       
+        }
     }
 
     public void resize(int rw) {

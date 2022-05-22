@@ -1,12 +1,9 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.CloseAction;
-import javax.swing.text.AttributeSet.ColorAttribute;
 import javax.swing.JOptionPane;
 
 import java.lang.String;
-import java.text.BreakIterator;
 import java.io.*;
 
 import java.awt.event.MouseEvent;
@@ -38,16 +35,17 @@ class ListFrame extends JFrame {
     //posições do mouse e do foco dele
     Point PositionMouse = null;
     Figure foco = null;
-    Figure focoAux = null;
     Point mouse = null;
     
     //add o foco e o clique para os botões
     Button focoBut = null;
     boolean clickedBut = false;
     boolean auxB = false;
+    boolean verifica = false;
 
-    int i, x, y, w, h, borda1, borda2, borda3, dentro1, dentro2, dentro3, posX = 0, posY = 0, indice;
-    boolean auxKey = false, auxKey2 = false, focoBoolean = false;
+    int i, x, y, w, h, borda1, borda2, borda3, dentro1, dentro2, dentro3, posX = 0, posY = 0, indice, numBut = -1;
+    boolean auxKey = false, auxKey2 = false, quadAux = true;
+    Color butBack, butLine;
 
     ListFrame (){
     
@@ -63,6 +61,7 @@ class ListFrame extends JFrame {
     buts.add(new Button(10, new Text("fundo",0,0, 0,0, 0,0,0, 0,0,0)));
     buts.add(new Button(11, new Text("background",0,0, 0,0, 0,0,0, 0,0,0)));
     buts.add(new Button(12, new Text("delete",0,0, 0,0, 0,0,0, 0,0,0)));
+    buts.add(new Button(13, new Text("save", 0,0, 0,0, 0,0,0, 0,0,0)));
 
     buts.add(new Button(15, new Text("exit",0,0, 0,0, 0,0,0, 0,0,0)));
    
@@ -103,82 +102,89 @@ class ListFrame extends JFrame {
        this.addMouseListener(
            new MouseAdapter(){
                public void mousePressed(MouseEvent evt){
+                   quadAux = true;
                    foco = null;
-                   auxKey = false;
                    mouse  = evt.getPoint();
+                   auxKey = false;
+                   verifica = false;
 
                      
                    if(auxB && focoBut != null){
-                        if(!(mouse.x < 60 && mouse.y < 680) && focoBut.idx != 9 && focoBut.idx != 10 && focoBut.idx != 12){
+                        if(!(mouse.x < 60 && mouse.y < 680)){
                             figureBut(focoBut.idx, mouse.x, mouse.y);
                             auxB = false;
                             focoBut = null;
                         }
-                }
+                    }  
 
-                for(Button but: buts){
-                       
-                    if(but.clicked(mouse.x, mouse.y)){
-                     focoBut = but;
-                     auxB = true;
-
-                     if(but.idx > 5 ){
-                         figureBut(focoBut.idx, mouse.x, mouse.y);
-                        }
-                    }
-                }
+                
                    for (int i = 0; i < figs.size(); i++) {
 
                         if (figs.get(i).clicked(mouse.x,mouse.y)) {
+                            verifica = true;
                             foco = figs.get(i); 
-                            focoAux = foco;    
                         }
                         
                         else if(aux.clicked(mouse.x, mouse.y)){
                             foco = figs.get(i);  
-                            focoAux = foco;    
                             auxKey = true;
                             
                         }
                         
                         else{
-                            focoAux = foco;    
                             auxKey = false;
                             
                         }
                     }
 
-                    
                     if (foco != null) {
                         figs.remove(foco);
                         figs.add(foco);
-                        // foco.bordinha(255, 0, 132);
+                    }
+
+                    for(Button but: buts){
+                        if(but.clicked(mouse.x, mouse.y)){
+                         focoBut = but;
+                         auxB = true;
+    
+                         if(but.idx > 5 ){
+                             figureBut(focoBut.idx, mouse.x, mouse.y);
+                            }
+
+                        if(numBut != but.idx){
+                            auxKey2 = false;
+                            indice = -1;
+                        }
+                        numBut = but.idx;
+                        }
                     }
                     
+                    
+                    if(foco == null && auxKey2 || focoBut == null && foco == null){
+
+                        focoBut = null;
+                        auxKey2 = false;
+                        indice = 0;
+                    }
                     if(foco != null){
 
                         if(indice == 9){
-            
                             foco.bordinha(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255));
                             auxKey2 = true;
-                        
-                            }
-
+                            focoBut = buts.get(indice-4);
+                        }
                         else if(indice == 10){
                             foco.colorismo(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255));
                             auxKey2 = true;
+                            focoBut = buts.get(indice-4);
                         }
                         else if(indice == 12){
                             figs.remove(foco);
                             auxKey2 = true;
-                            foco = null;
+                            quadAux =  false;
+                            focoBut = buts.get(indice-4);
                         }
-                    }
-                    
-                    if(foco == null && auxKey2){
-                        focoBut = null;
-                        auxKey2 = false;
-                        indice = 0;
+
                     }
                repaint();
            }
@@ -195,9 +201,10 @@ class ListFrame extends JFrame {
                 
                 else{
                     if (foco != null){
-    
+                        
                         int mx = event.getX() - mouse.x;
                         int my = event.getY() - mouse.y;
+
                         foco.drag(mx, my);
                     }   
                 }
@@ -255,6 +262,16 @@ class ListFrame extends JFrame {
                         //adicionando ao apertar "P", Polígonos
                         } else if (evt.getKeyChar() == 't' || evt.getKeyCode() == 'T') {
                                 figs.add(new Triangulo(x, y, 5,borda1,borda2,borda3,dentro1,dentro2, false));
+                        }
+
+                        if(evt.getKeyChar() == 'g' || evt.getKeyChar() == 'G'){
+                            JFileChooser fileChooser = new JFileChooser();
+                            fileChooser.setDialogTitle("Salvar no formato SVG. Qual o local gostaria de salvar e o nome do arquivo?");   
+                            int userSelection = fileChooser.showSaveDialog(null);
+                             if (userSelection == JFileChooser.APPROVE_OPTION){
+                                File fileToSave = fileChooser.getSelectedFile();
+                                criandoSVG(figs, fileToSave.getAbsolutePath());
+                            }
                         }
                         
                         if(foco != null){
@@ -330,7 +347,6 @@ class ListFrame extends JFrame {
             Figure fig = new Ellipse(x,y, 50, 50, borda1, borda2, borda3, dentro1, dentro2, dentro3);
                     figs.add(fig);
                     foco = fig;
-                    indice = idx;
                    }
 
         else if (idx == 2) {
@@ -341,7 +357,7 @@ class ListFrame extends JFrame {
 
         else if (idx == 3) {
             Figure fig = new Triangulo(x,y, 5,borda1,borda2,borda3,dentro1,dentro2, false);
-                   figs.add(fig);
+                    figs.add(fig);
                     foco = fig;
                     }
 
@@ -358,30 +374,34 @@ class ListFrame extends JFrame {
                 }
 
         else if (idx == 9) {
-                JOptionPane.showMessageDialog(null, "clique em uma figura mais de uma vez para mudar a borda, e depois clique no fundo para desfocar e ver o resultado");
-                indice = idx;
+            indice = idx;
                 }
         else if (idx == 10) {
-            JOptionPane.showMessageDialog(null, "clique em uma figura para mudar o fundo");
-                indice = idx;
+            indice = idx;
                 }
 
         else if (idx == 11) {
-            int i = JOptionPane.showConfirmDialog(null, "deseja mudar a cor de fundo?", "background",
-            JOptionPane.YES_NO_OPTION);
-            
-            if (i == JOptionPane.YES_OPTION) {
-                getContentPane().setBackground(JColorChooser.showDialog(null, "escolha a cor de fundo", Color.darkGray));
-                }
-            else if(i == JOptionPane.NO_OPTION) {
-                System.out.close();
-                }
-            }
+            getContentPane().setBackground(JColorChooser.showDialog(null, "escolha a cor de fundo", Color.darkGray));
+        }
 
-        else if (idx == 12){  
-            JOptionPane.showMessageDialog(null, "clique em uma figura para deleta-la");
+        else if (idx == 12){
             indice = idx;
         }
+
+        else if (idx == 13){
+            if (i == JOptionPane.YES_OPTION) {
+                
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setDialogTitle("salvando no formato SVG.qual o local gostaria de salvar e o nome do arquivo?");   
+                int userSelection = fileChooser.showSaveDialog(null);
+                 if (userSelection == JFileChooser.APPROVE_OPTION){
+                    File fileToSave = fileChooser.getSelectedFile();
+                    criandoSVG(figs, fileToSave.getAbsolutePath());
+            }
+
+        }
+    }
+
 
         else if (idx == 15) {
             int i = JOptionPane.showConfirmDialog(null, "deseja fechar o programa e nao salvar o processo?", "fechando...",
@@ -393,29 +413,86 @@ class ListFrame extends JFrame {
             else if(i == JOptionPane.NO_OPTION) {
                 System.out.close();
 
-                }
-            
+            } 
         }
-    }       
+    }
+
+       
      
 
         public void paint (Graphics g){
             super.paint(g);
             
+            
+            for (Figure fig: this.figs){
+                fig.paint(g, fig == foco);
+            }
+
             for (Button but: this.buts){
                 but.paint(g, but == focoBut);
             }
-
-            for (Figure fig: this.figs){
-                fig.paint(g, fig == foco);
-        }
-            if(foco != null){
+            if(foco != null && quadAux){
                 aux.x = foco.x + (foco.w + 10);
                 aux.y = foco.y + (foco.h + 10);
+
+                if(foco.getClass().getSimpleName().equals("Line")){
+                    aux.x = foco.x + (foco.w + 10);
+                    aux.y = foco.y - 5;
+                }
+                else if(foco.getClass().getSimpleName().equals("Triangulo")){
+                    aux.x = foco.x + (foco.w - 15);
+                    aux.y = foco.y + (foco.h - 5);    
+                }
                 aux.paint(g, true);
             }
         }
     
-      
+        public void criandoSVG(ArrayList<Figure> figura, String arquivo){
+            String format = ".svg";
+            try{
+                  File Stream = new File(arquivo + format );
+    
+                  if (!Stream.createNewFile() ) {
+                      System.out.println("Arquivo já existe\n");
+                  }
+    
+                  FileWriter Writer = new FileWriter(arquivo+format);
+                  Writer.write("<svg width=\"1500\" height=\"1000\">\n");
+    
+                  Writer.write(" <rect width=\"100%\" height=\"100%\" fill=\"white\" />\n");
+    
+                  for(Figure fig: figura){
+                    String borda = String.format("borda(%d,%d,%d)", borda1,  borda2, borda3);
+                    String dentro = String.format("borda(%d,%d,%d)", dentro1, dentro2, dentro3);
+                    if(fig instanceof Rect){
+                        Writer.write("<Rect x=\""+ fig.x +"\" y=\""+ fig.y +"\" width=\""+ fig.w +
+                        "\" height=\"" + fig.h + "\" style=\"fill:"+ dentro +
+                        ";stroke-width:3;stroke:"+ borda +"\" />\n");
+                    }
+                    else if( fig instanceof Line){
+                        Writer.write("<Line x=\""+ fig.x +"\" y=\""+ fig.y +
+                        "\" rx=\"10\" ry=\"10\" width=\""+ fig.w +
+                        "\" height=\"" + fig.h + "\" style=\"fill:"+ borda2 +
+                        ";stroke-width:3;stroke:"+ borda +"\" />\n");
+                    }
+                    else if( fig instanceof Ellipse){
+                        Writer.write("<Ellipse cx=\""+ (fig.x + (fig.w*0.5)) +"\" cy=\""+ (fig.y + (fig.h*0.5))+ "\" rx=\""+ (fig.w*0.5) + "\"" +
+                        " ry=\""+ (fig.h*0.5) + "\""+
+                        " style=\"fill:"+ borda2 +
+                        ";stroke-width:3;stroke:"+ borda +"\" />\n");
+                    }
+                    else if( fig instanceof Triangulo){
+                        String points = String.format("%d,%d %d,%d %d,%d", fig.x, fig.y, fig.x-(int)(fig.w/2.0), fig.y+fig.w, fig.x+(int)(fig.w/2.0), fig.y+fig.w);
+                        Writer.write("<polygon points=\""+ points +"\" "+ "style=\"fill:"+ dentro + ";stroke-width:3;stroke:"+ borda +"\" />\n");	
+                    }
+                }
+                  Writer.write("</svg>");
+                  Writer.close();
+            }
+            catch (IOException e){
+                  System.out.println("Ocorreu um erro.");
+                  e.printStackTrace();
+            }
+        }
         
 }
