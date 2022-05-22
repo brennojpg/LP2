@@ -2,7 +2,7 @@
 
 <h2> A seguir vou dar algumas instruções sobre o meu programa, vamos lá:</h2>
 
-Primeiramente explicando, o intuito do programa é criar figuras diferentes, e permetir algumas edições.
+Primeiramente explicando, o intuito do programa é criar diferentes figuras diferentes, e permitir algumas edições.
 
 <h3> <hr>Comandos de criação</hr> </h3>
 🔴 Aperte "R" para contruir um retângulo; <br>
@@ -32,20 +32,22 @@ Primeiramente explicando, o intuito do programa é criar figuras diferentes, e p
 🟡 Aperte no terceiro botão para criar um triângulo; <br>
 🟢 Aperte no quarto botão para criar um retângulo; <br>
 🔵 Aperte no quinto botão para criar um polígono de 5 lados; <br>
-🟣 As figuras serão criadas onde o você clicar depois de apertar nos botões.
+🟣 As figuras serão criadas onde você clicar, depois de apertar nos botões.
 
 <h3> <hr>Botões de edição</hr> </h3>
 🔴 Aperte no primeiro botão para mudar a cor da borda; <br>
 🟠 Aperte no segundo botão para mudar a cor do fundo da figura; <br>
 🟡 Aperte no terceiro botão para escolher a cor de fundo do programa; <br>
 🟢 Aperte no quarto botão para deletar a figura que você deseja; <br>
-🔵 Aperte no quintopara salvar o programa no formato SVG; <br>
+🔵 Aperte no quinto para salvar o programa no formato SVG; <br>
 🟣 Aperte no sexto e último botão para fechar o programa;<br>
 🟤 Quando você fecha o programa no "X", as figuras criadas serão salvas para a próxima vez que executar o programa;
 
 <h3> <hr>Observações</hr> </h3>
 🔴 Para desfocar do botão, basta clicar fora da caixa de seleção, que irá desfocar;<br>
-🟠 As figuras têm o limite de criação, não é possivel criar fdiguras em cima dos botões;
+🟠 As figuras têm o limite de criação, não é possivel criar figuras em cima dos botões;<br>
+🟡 Se o mouse não estiver na tela para a criação das figuras com o teclado, elas serão criadas em lugares aleatórios
+
 
 
 
