@@ -2,7 +2,7 @@
 
 <h2> A seguir vou dar algumas instruções sobre o meu programa, vamos lá:</h2>
 
-Primeiramente explicando, o intuito do programa é criar diferentes figuras diferentes, e permitir algumas edições.
+Primeiramente explicando, o intuito do programa é criar diferentes figuras, e permitir algumas edições.
 
 <h3> <hr>Comandos de criação</hr> </h3>
 🔴 Aperte "R" para contruir um retângulo; <br>
